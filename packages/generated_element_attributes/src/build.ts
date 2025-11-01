@@ -1,5 +1,5 @@
 import { InterfaceDeclaration, ModuleDeclarationKind, Project, SyntaxKind, VariableDeclarationKind } from "ts-morph"
-import { getInterfaceReccursiveExtends } from "./utils/get_interface_recursive_extends.ts"
+import { getInterfaceRecursiveExtends } from "./utils/get_interface_recursive_extends.ts"
 import { SingleBar } from 'cli-progress'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs"
 import { getExcludedInterfaceMembers } from "./utils/get_excluded_interface_members.ts"
@@ -25,7 +25,7 @@ progressBar.start(interfaces.length, 0, { info: '' })
 
 for (const iface of interfaces) {
     progressBar.increment(1, { info: ' | Checking ' + iface.getName() })
-    const ifaceExtends = getInterfaceReccursiveExtends(iface)
+    const ifaceExtends = getInterfaceRecursiveExtends(iface)
     
     if (
         [
@@ -69,7 +69,7 @@ const tempFile = tempProject.createSourceFile('temp.ts')
 tempFile.addInterfaces(Array.from(selectedInterfaces).map((i) => i.getStructure()))
 
 const tempFileInterfaces = tempFile.getInterfaces()
-const gereratedTypesFile = tempProject.createSourceFile('generated_types.ts')
+const generatedTypesFile = tempProject.createSourceFile('generated_types.ts')
 
 console.log('Removing unwanted interface members, transforming getters/setters to properties and adding camelcase version for event handlers...')
 progressBar.start(tempFileInterfaces.map((i) => i.getMembers().length).reduce((a, b) => a + b, 0), 0, { info: '' })
@@ -93,7 +93,7 @@ await Promise.all(tempFileInterfaces.map(async (i) => {
         if(m.isKind(SyntaxKind.PropertySignature) && name && eventHandlerNames?.has(name)) {
             const camelCaseName = getCamelcaseEventHandlerName(i.getName(), name)
 
-            if(!camelCaseName) throw new Error(`Could not find camelCase name for event handler ${i.getName()}.${name}. Please add it to the map in src/generate/utils/get-camelcase-event-handler-name.ts`)
+            if(!camelCaseName) throw new Error(`Could not find camelCase name for event handler ${i.getName()}.${name}. Please add it to the map in src/utils/get_camelcase_event_handler_name.ts`)
             const listenerStructure = m.getStructure()
 
             listenerStructure.name = camelCaseName
@@ -125,20 +125,17 @@ await Promise.all(tempFileInterfaces.map(async (i) => {
 }))
 progressBar.stop()
 
-const namespace = gereratedTypesFile.addModule({
+const namespace = generatedTypesFile.addModule({
     name: "ElementAttributes",
     isExported: true,
+    hasDeclareKeyword: true,
     declarationKind: ModuleDeclarationKind.Namespace,
 })
 
 namespace.addInterfaces(Array.from(tempFileInterfaces).map(i => i.getStructure()))
 
 console.log('Saving types...')
-gereratedTypesFile.formatText()
-if(!existsSync('./dist')) mkdirSync('./dist')
-writeFileSync('./dist/index.ts', gereratedTypesFile.getFullText())
+generatedTypesFile.formatText()
+if(!existsSync('./generated')) mkdirSync('./generated')
 
-namespace.setHasDeclareKeyword(true)
-
-writeFileSync('./dist/index.d.ts', gereratedTypesFile.getFullText())
-console.log('Done!')
+writeFileSync('./generated/index.d.ts', generatedTypesFile.getFullText())

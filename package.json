@@ -1,10 +1,7 @@
 {
 	"scripts": {
-		"build": "pnpm run build:element-attributes && pnpm run build:core",
-		"build:element-attributes": "cd packages/element_attributes/ && node src/build.ts",
-		"build:core": "tsdown --cwd ./packages/core/"
-	},
-	"devDependencies": {
-		"tsdown": "^0.15.12"
+		"build": "pnpm run build:generated-element-attributes && pnpm run build:core",
+		"build:generated-element-attributes": "pnpm --filter generated-element-attributes run build",
+		"build:core": "pnpm --filter @lmoulanier/el run build"
 	}
 }

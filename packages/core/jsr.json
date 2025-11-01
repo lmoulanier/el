@@ -1,0 +1,15 @@
+{
+    "$schema": "https://jsr.io/schema/config-file.v1.json",
+    "name": "@lmoulanier/el",
+    "version": "0.0.1",
+    "license": "MIT",
+    "exports": {
+        ".": "./src/index.ts",
+        "./alien-deepsignals": "./src/alien-deepsignals/index.ts"
+    },
+    "publish": {
+        "include": [
+            "src/**/*.ts"
+        ]
+    }
+}

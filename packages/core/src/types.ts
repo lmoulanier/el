@@ -1,4 +1,4 @@
-import type { ElementAttributes as Attr } from "element-attributes";
+import type { ElementAttributes as Attr } from "generated-element-attributes";
 
 export type Child = Node | string | number | null | undefined
 

@@ -1,16 +1,18 @@
 {
-  "name": "element-attributes",
+  "name": "generated-element-attributes",
   "version": "0.0.1",
   "type": "module",
-  "module": "dist/index.ts",
-  "main": "dist/index.ts",
+  "main": "",
   "types": "dist/index.d.ts",
   "author": "lmoulanier",
   "license": "MIT",
+  "scripts": {
+    "build": "node src/build.ts"
+  },
   "devDependencies": {
     "@types/cli-progress": "^3.11.6",
     "@types/node": "^24.9.2",
-    "@types/web": "^0.0.285",
+    "@types/web": "^0.0.287",
     "cli-progress": "^3.12.0",
     "ts-morph": "^27.0.2"
   }

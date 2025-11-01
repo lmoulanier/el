@@ -1,9 +1,9 @@
 import { InterfaceDeclaration, SyntaxKind } from "ts-morph"
 
-const interfacesReccursiveExtendsMap = new Map<InterfaceDeclaration, Set<InterfaceDeclaration>>()
+const interfacesRecursiveExtendsMap = new Map<InterfaceDeclaration, Set<InterfaceDeclaration>>()
 
-export function getInterfaceReccursiveExtends(iface: InterfaceDeclaration): Set<InterfaceDeclaration> {
-    if (interfacesReccursiveExtendsMap.has(iface)) return interfacesReccursiveExtendsMap.get(iface)!
+export function getInterfaceRecursiveExtends(iface: InterfaceDeclaration): Set<InterfaceDeclaration> {
+    if (interfacesRecursiveExtendsMap.has(iface)) return interfacesRecursiveExtendsMap.get(iface)!
 
     const result: Set<InterfaceDeclaration> = new Set()
 
@@ -15,7 +15,7 @@ export function getInterfaceReccursiveExtends(iface: InterfaceDeclaration): Set<
 
             if (decl) {
                 result.add(decl)
-                getInterfaceReccursiveExtends(decl).forEach(i => result.add(i))
+                getInterfaceRecursiveExtends(decl).forEach(i => result.add(i))
             } else {
                 console.warn(`${expr.getText()} (not resolved)`)
             }
