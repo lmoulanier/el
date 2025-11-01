@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"alien-deepsignals": "^0.3.1",
 		"alien-signals": "^3.0.5",
-		"generated-element-attributes": "workspace:*",
+		"generated-element-attributes": "workspace:^0.0.1",
 		"tsdown": "^0.15.12"
 	},
 	"peerDependencies": {
