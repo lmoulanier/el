@@ -1,0 +1,15 @@
+{
+    "$schema": "https://jsr.io/schema/config-file.v1.json",
+    "name": "@lmoulanier/elements-writable-properties-types",
+    "version": "0.0.1",
+    "license": "MIT",
+    "exports": {
+        ".": "./generated/index.d.ts"
+    },
+    "publish": {
+        "include": [
+            "generated/index.d.ts",
+            "README.md"
+        ]
+    }
+}

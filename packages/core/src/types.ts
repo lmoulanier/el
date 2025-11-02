@@ -1,4 +1,4 @@
-import type { ElementAttributes as Attr } from "generated-element-attributes";
+import type { DOMTypes } from "@lmoulanier/elements-writable-properties-types";
 
 export type Child = Node | string | number | null | undefined
 
@@ -57,10 +57,10 @@ export type PrefixedElementTag =
 
 export type BaseElementAttributes<T extends PrefixedElementTag> =
     (
-        T extends keyof PrefixedSVGElementTagNameMap ? Attr.SVGElementTagNameMap[PrefixedSVGElementTagNameMap[T]]
-        : T extends keyof PrefixedMathMLElementTagNameMap ? Attr.MathMLElementTagNameMap[PrefixedMathMLElementTagNameMap[T]]
-        : T extends keyof HTMLElementTagNameMap ? Attr.HTMLElementTagNameMap[T]
-        : T extends keyof HTMLElementDeprecatedTagNameMap ? Attr.HTMLElementDeprecatedTagNameMap[T]
+        T extends keyof PrefixedSVGElementTagNameMap ? DOMTypes.SVGElementTagNameMap[PrefixedSVGElementTagNameMap[T]]
+        : T extends keyof PrefixedMathMLElementTagNameMap ? DOMTypes.MathMLElementTagNameMap[PrefixedMathMLElementTagNameMap[T]]
+        : T extends keyof HTMLElementTagNameMap ? DOMTypes.HTMLElementTagNameMap[T]
+        : T extends keyof HTMLElementDeprecatedTagNameMap ? DOMTypes.HTMLElementDeprecatedTagNameMap[T]
         : never
     ) & Readonly<Record<string | symbol, unknown>>
 

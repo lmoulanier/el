@@ -1,9 +1,9 @@
 {
-  "name": "generated-element-attributes",
+  "name": "@lmoulanier/elements-writable-properties-types",
   "version": "0.0.1",
   "type": "module",
   "main": "",
-  "types": "dist/index.d.ts",
+  "types": "generated/index.d.ts",
   "author": "lmoulanier",
   "license": "MIT",
   "scripts": {
@@ -15,5 +15,17 @@
     "@types/web": "^0.0.287",
     "cli-progress": "^3.12.0",
     "ts-morph": "^27.0.2"
-  }
+  },
+  "exports": {
+    ".": "./generated/index.d.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "generated/index.d.ts",
+    "README.md"
+  ],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lmoulanier/el.git"
+	}
 }

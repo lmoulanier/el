@@ -1,7 +1,7 @@
 {
 	"scripts": {
-		"build": "pnpm run build:generated-element-attributes && pnpm run build:core",
-		"build:generated-element-attributes": "pnpm --filter generated-element-attributes run build",
+		"build": "pnpm run build:types && pnpm run build:core",
+		"build:types": "pnpm --filter @lmoulanier/elements-writable-properties-types run build",
 		"build:core": "pnpm --filter @lmoulanier/el run build"
 	}
 }

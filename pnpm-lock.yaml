@@ -31,15 +31,15 @@ importers:
 
   packages/core:
     devDependencies:
+      '@lmoulanier/elements-writable-properties-types':
+        specifier: workspace:^0.0.1
+        version: link:../generated_element_attributes
       alien-deepsignals:
         specifier: ^0.3.1
         version: 0.3.1(alien-signals@3.0.5)
       alien-signals:
         specifier: ^3.0.5
         version: 3.0.5
-      generated-element-attributes:
-        specifier: workspace:*
-        version: link:../generated_element_attributes
       tsdown:
         specifier: ^0.15.12
         version: 0.15.12(typescript@5.9.3)

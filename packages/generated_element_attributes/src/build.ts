@@ -126,9 +126,8 @@ await Promise.all(tempFileInterfaces.map(async (i) => {
 progressBar.stop()
 
 const namespace = generatedTypesFile.addModule({
-    name: "ElementAttributes",
+    name: "DOMTypes",
     isExported: true,
-    hasDeclareKeyword: true,
     declarationKind: ModuleDeclarationKind.Namespace,
 })
 
