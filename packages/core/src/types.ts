@@ -40,24 +40,24 @@ export type SpecialAttributes<
     children: Children
 }
 
-export type PrefixedSVGElementTagNameMap = { 'svg': 'svg' } & {
+export type SVGElementPrefixedTagTagMap = { 'svg': 'svg' } & {
     [K in keyof Omit<SVGElementTagNameMap, 'svg'> as `svg:${K}`]: K
 }
 
-export type PrefixedMathMLElementTagNameMap = { 'math': 'math' } & {
+export type MathMLElementPrefixedTagTagMap = { 'math': 'math' } & {
     [K in keyof Omit<MathMLElementTagNameMap, 'math'> as `math:${K}`]: K
 }
 
 export type PrefixedElementTag =
     | keyof HTMLElementTagNameMap
     | keyof HTMLElementDeprecatedTagNameMap
-    | keyof PrefixedSVGElementTagNameMap
-    | keyof PrefixedMathMLElementTagNameMap
+    | keyof SVGElementPrefixedTagTagMap
+    | keyof MathMLElementPrefixedTagTagMap
 
 export type BaseElementAttributesTagNameMap = {
     [T in PrefixedElementTag]:
-    T extends keyof PrefixedSVGElementTagNameMap ? DOMTypes.SVGElementTagNameMap[PrefixedSVGElementTagNameMap[T]]
-    : T extends keyof PrefixedMathMLElementTagNameMap ? DOMTypes.MathMLElementTagNameMap[PrefixedMathMLElementTagNameMap[T]]
+    T extends keyof SVGElementPrefixedTagTagMap ? DOMTypes.SVGElementTagNameMap[SVGElementPrefixedTagTagMap[T]]
+    : T extends keyof MathMLElementPrefixedTagTagMap ? DOMTypes.MathMLElementTagNameMap[MathMLElementPrefixedTagTagMap[T]]
     : T extends keyof HTMLElementTagNameMap ? DOMTypes.HTMLElementTagNameMap[T]
     : T extends keyof HTMLElementDeprecatedTagNameMap ? DOMTypes.HTMLElementDeprecatedTagNameMap[T]
     : never
@@ -69,8 +69,8 @@ export type ElementAttributesTagNameMap = {
 
 export type ElementPrefixedTagNameMap = {
     [T in PrefixedElementTag]:
-    T extends keyof PrefixedSVGElementTagNameMap ? SVGElementTagNameMap[PrefixedSVGElementTagNameMap[T]]
-    : T extends keyof PrefixedMathMLElementTagNameMap ? MathMLElementTagNameMap[PrefixedMathMLElementTagNameMap[T]]
+    T extends keyof SVGElementPrefixedTagTagMap ? SVGElementTagNameMap[SVGElementPrefixedTagTagMap[T]]
+    : T extends keyof MathMLElementPrefixedTagTagMap ? MathMLElementTagNameMap[MathMLElementPrefixedTagTagMap[T]]
     : T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T]
     : T extends keyof HTMLElementDeprecatedTagNameMap ? HTMLElementDeprecatedTagNameMap[T]
     : never
