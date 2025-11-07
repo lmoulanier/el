@@ -2,13 +2,15 @@ import type { DOMTypes } from "@lmoulanier/elements-writable-properties-types";
 
 export type Child = Node | string | number | null | undefined
 
-export type AnyElement = HTMLElement | SVGElement | MathMLElement
+export type Children = (Child | Child[])[]
+
+export type DomElement = HTMLElement | SVGElement | MathMLElement
 
 export type SpecialAttributes<
     ClassAttribute = string | string[] | { [className: string]: boolean },
     StyleAttribute = string | Partial<CSSStyleDeclaration>,
     DataAttribute = DOMStringMap,
-    Children = (Child | Child[])[]
+    ChildrenAttribute = Children
 > = {
     /**
      * Add class to the element. Can be provided in multiple formats:
@@ -37,15 +39,15 @@ export type SpecialAttributes<
     classList: ClassAttribute
     style: StyleAttribute
     data: DataAttribute
-    children: Children
+    children: ChildrenAttribute
 }
 
 export type SVGElementPrefixedTagTagMap = { 'svg': 'svg' } & {
-    [K in keyof Omit<SVGElementTagNameMap, 'svg'> as `svg:${K}`]: K
+    [T in keyof Omit<SVGElementTagNameMap, 'svg'> as `svg:${T}`]: T
 }
 
 export type MathMLElementPrefixedTagTagMap = { 'math': 'math' } & {
-    [K in keyof Omit<MathMLElementTagNameMap, 'math'> as `math:${K}`]: K
+    [T in keyof Omit<MathMLElementTagNameMap, 'math'> as `math:${T}`]: T
 }
 
 export type PrefixedElementTag =

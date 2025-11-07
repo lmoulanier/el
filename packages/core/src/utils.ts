@@ -1,8 +1,8 @@
-import type { AnyElement, Child } from "./types";
+import type { DomElement, Child } from "./types";
 
 export const classkeys: ReadonlyArray<string | symbol> = ['class', 'className', 'classList']
 
-export function handleAttribute(element: AnyElement, key: string | symbol, value: any): void {
+export function handleAttribute(element: DomElement, key: string | symbol, value: any): void {
     if(typeof key === 'string') {
         if (handleClassAttribute(element, key, value)) return
         if (handleStyleAttribute(element, key, value)) return
@@ -22,7 +22,7 @@ export function handleAttribute(element: AnyElement, key: string | symbol, value
     if(typeof key === 'string') element.setAttribute(key, String(value))
 }
 
-export function handleClassAttribute(element: AnyElement, name: string, value: any): boolean {
+export function handleClassAttribute(element: DomElement, name: string, value: any): boolean {
     if (!classkeys.includes(name)) return false
     if (typeof value === 'string') {
         element.classList = ''
@@ -40,7 +40,7 @@ export function handleClassAttribute(element: AnyElement, name: string, value: a
     return true
 }
 
-export function handleEventHandlerAttribute(element: AnyElement, name: string, value: any): boolean {
+export function handleEventHandlerAttribute(element: DomElement, name: string, value: any): boolean {
     if (!name.startsWith('on') || typeof value !== 'function') return false
 
     const eventName = name.slice(2).toLowerCase()
@@ -48,7 +48,7 @@ export function handleEventHandlerAttribute(element: AnyElement, name: string, v
     return true
 }
 
-export function handleStyleAttribute(element: AnyElement, name: string, value: any): boolean {
+export function handleStyleAttribute(element: DomElement, name: string, value: any): boolean {
     if (name !== 'style') return false
 
     if (typeof value === 'string') {
@@ -69,13 +69,13 @@ export function handleStyleAttribute(element: AnyElement, name: string, value: a
     return true
 }
 
-export function handleDataAttribute(element: AnyElement, key: string, value: any): boolean {
+export function handleDataAttribute(element: DomElement, key: string, value: any): boolean {
     if (key !== 'data' || typeof value !== 'object' || value === null) return false
     Object.assign(element.dataset, value)
     return true
 }
 
-export function handleChildren(element: AnyElement, children: Child | Child[]) {
+export function handleChildren(element: DomElement, children: Child | Child[]) {
     if (!Array.isArray(children)) children = [children];
 
     children.forEach((child) => {

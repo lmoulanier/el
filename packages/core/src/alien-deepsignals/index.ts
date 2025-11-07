@@ -1,16 +1,16 @@
 import type { ElementPrefixedTagNameMap, PrefixedElementTag } from "../types"
 import { handleSignalAttribute, handleSignalChildren } from "./utils";
-import type { MayBeReactiveAttributes } from "./types";
+import type { Children, MayBeReactiveAttributes } from "./types";
 
-export function el<K extends PrefixedElementTag>(tag: K, attributes?: MayBeReactiveAttributes<K> | null, ...children: NonNullable<MayBeReactiveAttributes<K>['children']>): ElementPrefixedTagNameMap[K] {
-    let element: ElementPrefixedTagNameMap[K]
+export function el<T extends PrefixedElementTag>(tag: T, attributes?: MayBeReactiveAttributes[T] | null, ...children: Children): ElementPrefixedTagNameMap[T] {
+    let element: ElementPrefixedTagNameMap[T]
 
     if (tag === 'svg' || tag.startsWith('svg:')) {
-        element = document.createElementNS("http://www.w3.org/2000/svg", tag === 'svg' ? 'svg' : tag.substring(4)) as ElementPrefixedTagNameMap[K]
+        element = document.createElementNS("http://www.w3.org/2000/svg", tag === 'svg' ? 'svg' : tag.substring(4)) as ElementPrefixedTagNameMap[T]
     } else if (tag === 'math' || tag.startsWith('math:')) {
-        element = document.createElementNS("http://www.w3.org/1998/Math/MathML", tag === 'math' ? 'math' : tag.substring(5)) as ElementPrefixedTagNameMap[K]
+        element = document.createElementNS("http://www.w3.org/1998/Math/MathML", tag === 'math' ? 'math' : tag.substring(5)) as ElementPrefixedTagNameMap[T]
     } else {
-        element = document.createElement(tag) as ElementPrefixedTagNameMap[K]
+        element = document.createElement(tag) as ElementPrefixedTagNameMap[T]
     }
 
     if(attributes) {

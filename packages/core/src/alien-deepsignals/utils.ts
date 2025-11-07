@@ -1,9 +1,9 @@
 import { effect, isComputed, isSignal } from "alien-deepsignals"
-import type { AnyElement, Child } from "../types"
+import type { DomElement, Child } from "../types"
 import type { ReactiveChild } from "./types"
 import { childToNode, classkeys, handleAttribute, handleChildren } from "../utils"
 
-export function handleSignalAttribute(element: AnyElement, key: string | symbol, value: any): void {
+export function handleSignalAttribute(element: DomElement, key: string | symbol, value: any): void {
     if (isSignal(value) || isComputed(value)) {
         effect(() => handleAttribute(element, key, value.get()))
         return
@@ -18,7 +18,7 @@ export function handleSignalAttribute(element: AnyElement, key: string | symbol,
     handleAttribute(element, key, value)
 }
 
-function handleClassSignalAttribute(element: AnyElement, name: string, value: any): boolean {
+function handleClassSignalAttribute(element: DomElement, name: string, value: any): boolean {
     if (!classkeys.includes(name)) return false
 
     if(Array.isArray(value)) {
@@ -49,7 +49,7 @@ function handleClassSignalAttribute(element: AnyElement, name: string, value: an
     return false
 }
 
-function handleStyleSignalAttribute(element: AnyElement, name: string, value: any): boolean {
+function handleStyleSignalAttribute(element: DomElement, name: string, value: any): boolean {
     if (name !== 'style') return false
 
     if (typeof value === 'object' && value !== null) {
@@ -78,7 +78,7 @@ function handleStyleSignalAttribute(element: AnyElement, name: string, value: an
     return false
 }
 
-function handleDataSignalAttribute(element: AnyElement, key: string, value: any): boolean {
+function handleDataSignalAttribute(element: DomElement, key: string, value: any): boolean {
     if (key !== 'data') return false
 
     if (typeof value === 'object' && value !== null) {
@@ -96,7 +96,7 @@ function handleDataSignalAttribute(element: AnyElement, key: string, value: any)
     return false
 }
 
-export function handleSignalChildren(element: AnyElement, children: Child | ReactiveChild): void {
+export function handleSignalChildren(element: DomElement, children: Child | ReactiveChild): void {
     if(isSignal(children) || isComputed(children)) {
         let placeholder: Node | null = null
 
