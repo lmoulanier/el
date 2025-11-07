@@ -1,7 +1,7 @@
 import { effect, isComputed, isSignal } from "alien-deepsignals"
 import type { DomElement, Child } from "../types"
 import type { ReactiveChild } from "./types"
-import { childToNode, classkeys, handleAttribute, handleChildren } from "../utils"
+import { childToNode, handleAttribute, handleChildren } from "../utils"
 
 export function handleSignalAttribute(element: DomElement, key: string | symbol, value: any): void {
     if (isSignal(value) || isComputed(value)) {
@@ -19,7 +19,7 @@ export function handleSignalAttribute(element: DomElement, key: string | symbol,
 }
 
 function handleClassSignalAttribute(element: DomElement, name: string, value: any): boolean {
-    if (!classkeys.includes(name)) return false
+    if (name !== 'class') return false
 
     if(Array.isArray(value)) {
         effect(() => {

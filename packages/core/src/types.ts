@@ -19,24 +19,6 @@ export type SpecialAttributes<
      * - An object where keys are class names and values are booleans indicating whether to include the class: `{ "class1": true, "class2": false }`
      */
     class: ClassAttribute
-    /**
-     * Add class to the element. Can be provided in multiple formats:
-     * - A string with space-separated class names: `"class1 class2"`
-     * - An array of class names: `["class1", "class2"]`
-     * - An object where keys are class names and values are booleans indicating whether to include the class: `{ "class1": true, "class2": false }`
-     *
-     * @deprecated Use class instead.
-     */
-    className: ClassAttribute
-    /**
-     * Add class to the element. Can be provided in multiple formats:
-     * - A string with space-separated class names: `"class1 class2"`
-     * - An array of class names: `["class1", "class2"]`
-     * - An object where keys are class names and values are booleans indicating whether to include the class: `{ "class1": true, "class2": false }`
-     *
-     * @deprecated Use class instead.
-     */
-    classList: ClassAttribute
     style: StyleAttribute
     data: DataAttribute
     children: ChildrenAttribute

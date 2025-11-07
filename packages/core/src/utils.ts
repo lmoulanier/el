@@ -1,7 +1,5 @@
 import type { DomElement, Child } from "./types";
 
-export const classkeys: ReadonlyArray<string | symbol> = ['class', 'className', 'classList']
-
 export function handleAttribute(element: DomElement, key: string | symbol, value: any): void {
     if(typeof key === 'string') {
         if (handleClassAttribute(element, key, value)) return
@@ -23,7 +21,7 @@ export function handleAttribute(element: DomElement, key: string | symbol, value
 }
 
 export function handleClassAttribute(element: DomElement, name: string, value: any): boolean {
-    if (!classkeys.includes(name)) return false
+    if (name !== 'class') return false
     if (typeof value === 'string') {
         element.classList = ''
         element.classList.add(...value.split(' ').filter(Boolean))
