@@ -1,8 +1,8 @@
-import type { ElementPrefixedTagNameMap, PrefixedElementTag } from "../types"
+import type { ElementPrefixedTagNameMap, PrefixedElementTag, Prettify } from "../types"
 import { handleSignalAttribute, handleSignalChildren } from "./utils";
 import type { Children, MayBeReactiveAttributes } from "./types";
 
-export function el<T extends PrefixedElementTag>(tag: T, attributes?: MayBeReactiveAttributes[T] | null, ...children: Children): ElementPrefixedTagNameMap[T] {
+export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<MayBeReactiveAttributes[T]> | null, ...children: Children): ElementPrefixedTagNameMap[T] {
     let element: ElementPrefixedTagNameMap[T]
 
     if (tag === 'svg' || tag.startsWith('svg:')) {

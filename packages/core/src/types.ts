@@ -59,3 +59,7 @@ export type ElementPrefixedTagNameMap = {
     : T extends keyof HTMLElementDeprecatedTagNameMap ? HTMLElementDeprecatedTagNameMap[T]
     : never
 }
+
+export type Prettify<T> = {
+    [K in keyof T]: T[K]
+} & {}
