@@ -166,6 +166,12 @@ export namespace DOMTypes {
          * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/id)
          */
         id: string;
+        /**
+         * The **`innerHTML`** property of the Element interface gets or sets the HTML or XML markup contained within the element.
+         *
+         * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
+         */
+        innerHTML: string;
         /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/fullscreenchange_event) */
         onfullscreenchange: ((this: Element, ev: Event) => any) | null;
         /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/fullscreenerror_event) */

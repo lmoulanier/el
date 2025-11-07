@@ -1,7 +1,7 @@
 const excludedInterfaceMembersMap = new Map<string, string[]>([
     [
         'Element',
-        ['innerHTML', 'outerHTML', 'classList', 'className']
+        ['outerHTML', 'classList', 'className']
     ],
     [
         'HTMLElement',
