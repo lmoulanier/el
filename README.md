@@ -7,6 +7,7 @@ A simple `document.createElement` alternative with TypeScript support for creati
 - Type-safe element creation with TypeScript
 - Support for HTML, SVG, and MathML elements
 - Simple attribute and event handling
+- JSX support
 - Optional reactive programming with `alien-deepsignals`
 
 ## Installation
@@ -73,6 +74,51 @@ const circle = el('svg:circle', { cx: '50', cy: '50', r: '20' })
 const math = el('math')
 const variable = el('math:mi', null, 'x')
 ```
+
+## JSX Support
+
+Use JSX syntax with TypeScript configuration:
+
+```typescript
+// tsconfig.json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@lmoulanier/el"
+  }
+}
+```
+
+```tsx
+// Regular JSX
+function App() {
+  return (
+    <div class="container">
+      <h1>My App</h1>
+      <button onclick={() => console.log('clicked')}>
+        Click me
+      </button>
+    </div>
+  )
+}
+
+// With reactive support
+import type { JSX } from '@lmoulanier/el/alien-deepsignals/jsx-runtime'
+
+function Counter({ initialCount = 0 }) {
+  const count = signal(initialCount)
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onclick={() => count.set(count.get() + 1)}>
+        Increment
+      </button>
+    </div>
+  )
+}
+```
+
+For reactive JSX, use `jsxImportSource: "@lmoulanier/el/alien-deepsignals"`
 
 ## Reactive Support (Optional)
 
