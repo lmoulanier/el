@@ -23,9 +23,6 @@ importers:
       alien-deepsignals:
         specifier: ^0.3.1
         version: 0.3.1(alien-signals@3.1.0)
-      alien-signals:
-        specifier: ^3.1.0
-        version: 3.1.0
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
@@ -42,9 +39,6 @@ importers:
       alien-deepsignals:
         specifier: ^0.3.1
         version: 0.3.1(alien-signals@3.1.0)
-      alien-signals:
-        specifier: ^3.1.0
-        version: 3.1.0
       tsdown:
         specifier: ^0.16.1
         version: 0.16.1(typescript@5.9.3)
