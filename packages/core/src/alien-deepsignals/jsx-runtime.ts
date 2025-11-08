@@ -1,5 +1,5 @@
 import { Computed, computed, isComputed, isSignal } from "alien-deepsignals"
-import { el } from "."
+import { el } from "./index"
 import type { DomElement, PrefixedElementTag, Prettify } from "../types"
 import type { Children, ElementAttributesTagNameMap } from "./types"
 import { childrenToNodes } from "../utils"

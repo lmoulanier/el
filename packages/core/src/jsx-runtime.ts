@@ -1,4 +1,4 @@
-import { el } from "."
+import { el } from "./index"
 import type { DomElement, PrefixedElementTag, Prettify, Children, ElementAttributesTagNameMap } from "./types"
 import { childrenToNodes } from "./utils"
 

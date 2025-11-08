@@ -4,13 +4,19 @@
     "version": "0.1.0",
     "license": "MIT",
     "exports": {
-        ".": "./src/index.ts",
-        "./alien-deepsignals": "./src/alien-deepsignals/index.ts"
+		".": "./src/index.ts",
+		"./alien-deepsignals": "./src/alien-deepsignals/index.ts",
+		"./alien-deepsignals/jsx-dev-runtime": "./src/alien-deepsignals/jsx-dev-runtime.ts",
+		"./alien-deepsignals/jsx-runtime": "./src/alien-deepsignals/jsx-runtime.ts",
+		"./jsx-dev-runtime": "./src/jsx-dev-runtime.ts",
+		"./jsx-runtime": "./src/jsx-runtime.ts",
+		"./package.json": "./package.json"
     },
     "publish": {
         "include": [
             "src/**/*.ts",
-            "README.md"
+            "README.md",
+            "package.json"
         ]
     }
 }
