@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite -c vite.config.ts",
+    "build": "tsc && vite -c vite.config.ts build",
+    "preview": "vite -c vite.config.ts preview"
   },
   "devDependencies": {
     "@lmoulanier/el": "workspace:*",

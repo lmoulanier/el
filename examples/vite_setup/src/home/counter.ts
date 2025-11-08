@@ -6,10 +6,6 @@ export function createCounter() {
   return el('button', {
       id: 'counter',
       type: 'button',
-      onclick: () => {
-          console.log('count' + (count.get() + 1))
-          console.time('count' + (count.get() + 1))
-          count.set(count.get() + 1)
-      }
+      onclick: () => count.set(count.get() + 1)
   }, computed(() => `count is ${count.get()}`))
 }

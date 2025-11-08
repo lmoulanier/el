@@ -1,6 +1,6 @@
 import { el } from "@lmoulanier/el/alien-deepsignals";
 import { batch, computed, deepSignal, watch, type DeepSignal } from "alien-deepsignals";
-import { debounce } from "./debounce";
+import { debounce } from "../debounce";
 
 type Todo = DeepSignal<{ id: string, title: string, isDone: boolean }>
 

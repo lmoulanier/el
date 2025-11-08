@@ -20,7 +20,11 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* JSX */
+    "jsx": "react-jsx",
+    "jsxImportSource": "@lmoulanier/el/alien-deepsignals",
   },
   "include": ["src"]
 }

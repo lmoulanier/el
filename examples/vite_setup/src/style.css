@@ -229,3 +229,32 @@ button:focus-visible {
 .todo:hover .todo-add-after {
   transform: translate(-50%, 50%) scale(1);
 }
+
+.posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: min-content;
+  margin: 0 auto;
+  text-align: left;
+}
+
+@media (max-width: 980px) {
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+}
+
+.category {
+  display: inline-block;
+  background-color: #646cff;
+  color: #fff;
+  padding: 0.25em 0.5em;
+  border-radius: 12px;
+  line-height: 1;
+}
