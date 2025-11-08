@@ -1,7 +1,7 @@
 import type { Children, ElementAttributesTagNameMap, ElementPrefixedTagNameMap, PrefixedElementTag, Prettify } from "./types"
 import { handleAttribute, handleChildren } from "./utils"
 
-export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<ElementAttributesTagNameMap[T]> | null, ...children: Children): ElementPrefixedTagNameMap[T] {
+export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<ElementAttributesTagNameMap[T]> | null, ...children: Children[]): ElementPrefixedTagNameMap[T] {
     let element: ElementPrefixedTagNameMap[T]
 
     if (tag === 'svg' || tag.startsWith('svg:')) {
@@ -13,13 +13,14 @@ export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<E
     }
 
     if (attributes) {
-      for (let key of Reflect.ownKeys(attributes)) {
-          if(key === 'children') {
-              attributes.children?.forEach((subChildren) => handleChildren(element, subChildren))
-          } else {
-              handleAttribute(element, key, attributes[key])
-          }
-      }
+        for (let key of Reflect.ownKeys(attributes)) {
+            if(key === 'children') {
+                if (Array.isArray(attributes.children)) attributes.children.forEach((subChildren) => handleChildren(element, subChildren))
+                else handleChildren(element, attributes.children)
+            } else {
+                handleAttribute(element, key, attributes[key])
+            }
+        }
     }
 
     children.forEach((subChildren) => handleChildren(element, subChildren))

@@ -37,6 +37,10 @@
 	"exports": {
 		".": "./dist/index.js",
 		"./alien-deepsignals": "./dist/alien-deepsignals/index.js",
+		"./alien-deepsignals/jsx-dev-runtime": "./dist/alien-deepsignals/jsx-dev-runtime.js",
+		"./alien-deepsignals/jsx-runtime": "./dist/alien-deepsignals/jsx-runtime.js",
+		"./jsx-dev-runtime": "./dist/jsx-dev-runtime.js",
+		"./jsx-runtime": "./dist/jsx-runtime.js",
 		"./package.json": "./package.json"
 	},
 	"files": [

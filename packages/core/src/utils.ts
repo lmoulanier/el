@@ -1,4 +1,4 @@
-import type { DomElement, Child } from "./types";
+import type { DomElement, Child, Children } from "./types";
 
 export function handleAttribute(element: DomElement, key: string | symbol, value: any): void {
     if(typeof key === 'string') {
@@ -73,13 +73,14 @@ export function handleDataAttribute(element: DomElement, key: string, value: any
     return true
 }
 
-export function handleChildren(element: DomElement, children: Child | Child[]) {
-    if (!Array.isArray(children)) children = [children];
+export function handleChildren(element: DomElement, children: Children) {
 
-    children.forEach((child) => {
-        const node = childToNode(child)
-        if (node) element.appendChild(node)
-    })
+    childrenToNodes(children).forEach((node) => element.appendChild(node))
+}
+
+export function childrenToNodes(children: Children): Node[] {
+    if (!Array.isArray(children)) children = [children];
+    return children.map(childToNode).filter((node) => node !== null)
 }
 
 export function childToNode(child: Child): Node | null {

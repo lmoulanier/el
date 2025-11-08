@@ -1,6 +1,6 @@
 import { effect, isComputed, isSignal } from "alien-deepsignals"
 import type { DomElement, Child } from "../types"
-import type { ReactiveChild } from "./types"
+import type { Children, ReactiveChild } from "./types"
 import { childToNode, handleAttribute, handleChildren } from "../utils"
 
 export function handleSignalAttribute(element: DomElement, key: string | symbol, value: any): void {
@@ -96,7 +96,7 @@ function handleDataSignalAttribute(element: DomElement, key: string, value: any)
     return false
 }
 
-export function handleSignalChildren(element: DomElement, children: Child | ReactiveChild): void {
+export function handleSignalChildren(element: DomElement, children: Children): void {
     if(isSignal(children) || isComputed(children)) {
         let placeholder: Node | null = null
 
@@ -108,7 +108,7 @@ export function handleSignalChildren(element: DomElement, children: Child | Reac
         const nodes: Node[] = []
 
         effect(() => {
-            const newNodes = getNodes(children)
+            const newNodes = reactiveChildrenToNodes(children)
             if (newNodes.length === 0) newNodes.push(getPlaceholder())
 
             let lastInsertedNode: Node | null = null
@@ -154,14 +154,12 @@ export function handleSignalChildren(element: DomElement, children: Child | Reac
                 }
             }
         })
-
-        return
+    } else {
+        return handleChildren(element, children)
     }
-
-    handleChildren(element, children)
 }
 
-function getNodes(reactiveChild: ReactiveChild): Node[] {
+export function reactiveChildrenToNodes(reactiveChild: ReactiveChild): Node[] {
     const value = getReactiveChildValue(reactiveChild)
 
     const nodes: Node[] = []

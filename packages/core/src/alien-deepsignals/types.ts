@@ -9,7 +9,7 @@ type MayBeReactiveObject<T extends object> = {
 
 export type ReactiveChild = Signal<Child> | Signal<Child[]> | Computed<Child> | Computed<Child[]>;
 
-export type Children = (Child | Child[] | ReactiveChild | ReactiveChild[])[]
+export type Children = Child | Child[] | ReactiveChild
 
 type ClassSignalAttribute =
     | MaybeReactive<string>
@@ -28,6 +28,6 @@ type DataSignalAttribute =
 
 type SpecialAttributesSignal = SpecialAttributes<ClassSignalAttribute, StyleSignalAttribute, DataSignalAttribute, Children>
 
-export type MayBeReactiveAttributes = {
+export type ElementAttributesTagNameMap = {
     [T in PrefixedElementTag]: Partial<MayBeReactiveObject<BaseElementAttributesTagNameMap[T]> & SpecialAttributesSignal & Readonly<Record<string | symbol, unknown>>>
 }

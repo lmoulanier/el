@@ -2,7 +2,7 @@ import type { DOMTypes } from "@lmoulanier/elements-writable-properties-types";
 
 export type Child = Node | string | number | null | undefined
 
-export type Children = (Child | Child[])[]
+export type Children = Child | Child[]
 
 export type DomElement = HTMLElement | SVGElement | MathMLElement
 
@@ -21,7 +21,7 @@ export type SpecialAttributes<
     class: ClassAttribute
     style: StyleAttribute
     data: DataAttribute
-    children: ChildrenAttribute
+    children: ChildrenAttribute | ChildrenAttribute[]
 }
 
 export type SVGElementPrefixedTagTagMap = { 'svg': 'svg' } & {

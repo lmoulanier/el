@@ -1,8 +1,8 @@
 import type { ElementPrefixedTagNameMap, PrefixedElementTag, Prettify } from "../types"
 import { handleSignalAttribute, handleSignalChildren } from "./utils";
-import type { Children, MayBeReactiveAttributes } from "./types";
+import type { Children, ElementAttributesTagNameMap } from "./types";
 
-export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<MayBeReactiveAttributes[T]> | null, ...children: Children): ElementPrefixedTagNameMap[T] {
+export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<ElementAttributesTagNameMap[T]> | null, ...children: Children[]): ElementPrefixedTagNameMap[T] {
     let element: ElementPrefixedTagNameMap[T]
 
     if (tag === 'svg' || tag.startsWith('svg:')) {
@@ -16,14 +16,18 @@ export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<M
     if(attributes) {
         for (let key of Reflect.ownKeys(attributes)) {
             if (key === 'children') {
-                    attributes.children?.flat().forEach((child) => handleSignalChildren(element, child))
+                if (Array.isArray(attributes.children)) {
+                    attributes.children.forEach((child) => handleSignalChildren(element, child))
+                } else {
+                    handleSignalChildren(element, attributes.children)
+                }
             } else {
                 handleSignalAttribute(element, key, attributes[key])
             }
         }
     }
 
-    children.flat().forEach((child) => handleSignalChildren(element, child))
+    children.forEach((child) => handleSignalChildren(element, child))
 
     return element
 }
