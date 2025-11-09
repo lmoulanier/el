@@ -5,9 +5,9 @@ export function el<T extends PrefixedElementTag>(tag: T, attributes?: Prettify<E
     let element: ElementPrefixedTagNameMap[T]
 
     if (tag === 'svg' || tag.startsWith('svg:')) {
-        element = document.createElementNS("http://www.w3.org/2000/svg", tag.substring(4)) as ElementPrefixedTagNameMap[T]
+        element = document.createElementNS("http://www.w3.org/2000/svg", tag === 'svg' ? 'svg' : tag.substring(4)) as ElementPrefixedTagNameMap[T]
     } else if (tag === 'math' || tag.startsWith('math:')) {
-        element = document.createElementNS("http://www.w3.org/1998/Math/MathML", tag.substring(5)) as ElementPrefixedTagNameMap[T]
+        element = document.createElementNS("http://www.w3.org/1998/Math/MathML", tag === 'math' ? 'math' : tag.substring(5)) as ElementPrefixedTagNameMap[T]
     } else {
         element = document.createElement(tag) as ElementPrefixedTagNameMap[T]
     }
