@@ -1,3 +1,40 @@
+/**
+ * @fileoverview Reactive JSX runtime for @lmoulanier/el with alien-deepsignals integration.
+ * 
+ * This module provides JSX support with reactive programming capabilities using alien-deepsignals.
+ * It enables automatic reactivity for signals and computed values in JSX expressions.
+ * 
+ * Configure your tsconfig.json for reactive JSX:
+ * ```json
+ * {
+ *   "compilerOptions": {
+ *     "jsx": "react-jsx",
+ *     "jsxImportSource": "@lmoulanier/el/alien-deepsignals"
+ *   }
+ * }
+ * ```
+ * 
+ * @example
+ * ```tsx
+ * import { signal } from 'alien-deepsignals'
+ * 
+ * function Counter({ initialCount = 0 }) {
+ *   const count = signal(initialCount)
+ *   return (
+ *     <div>
+ *       <p>Count: {count}</p>
+ *       <button onclick={() => count.set(count.get() + 1)}>
+ *         Increment
+ *       </button>
+ *     </div>
+ *   )
+ * }
+ * ```
+ * 
+ * @module
+ * @requires alien-deepsignals
+ */
+
 import { Computed, computed, isComputed, isSignal } from "alien-deepsignals"
 import { el } from "./index"
 import type { DomElement, PrefixedElementTag, Prettify } from "../types"

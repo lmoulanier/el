@@ -1,3 +1,36 @@
+
+
+/**
+ * @fileoverview JSX runtime for @lmoulanier/el - provides JSX support for type-safe DOM element creation.
+ * 
+ * This module implements the JSX runtime interface allowing you to use JSX syntax with TypeScript.
+ * Configure your tsconfig.json with:
+ * ```json
+ * {
+ *   "compilerOptions": {
+ *     "jsx": "react-jsx",
+ *     "jsxImportSource": "@lmoulanier/el"
+ *   }
+ * }
+ * ```
+ * 
+ * @example
+ * ```tsx
+ * function App() {
+ *   return (
+ *     <div class="container">
+ *       <h1>My App</h1>
+ *       <button onclick={() => console.log('clicked')}>
+ *         Click me
+ *       </button>
+ *     </div>
+ *   )
+ * }
+ * ```
+ * 
+ * @module
+ */
+
 import { el } from "./index"
 import type { DomElement, PrefixedElementTag, Prettify, Children, ElementAttributesTagNameMap } from "./types"
 import { childrenToNodes } from "./utils"
