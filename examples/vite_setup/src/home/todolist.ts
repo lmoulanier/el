@@ -56,7 +56,7 @@ export function createTodolist(id?: string) {
 
         todoInputMap.set(todo, editInput)
 
-        node = h('div', { class: { todo: true, done: todo.$isDone } }, [
+        node = h('div', { class: { todo: true, done: todo.$isDone ?? false } }, [
             h('input', {
                 class: 'todo-checkbox',
                 type: 'checkbox',
