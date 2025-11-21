@@ -24,7 +24,7 @@ export function handleClassSignalAttribute(element: DomElement, value: SpecialAt
     return
   }
 
-  if (typeof value === 'function' && (isSignal(value) || isComputed(value))) {
+  if (isSignal(value) || isComputed(value)) {
     effect(() => {
       element.classList = ''
       handleClassAttribute(element, value())
@@ -180,10 +180,10 @@ function insertAfter(parent: Node, newNode: Node, referenceNode: Node): void {
   }
 }
 
-export function isSignal(value: unknown): value is Signal<unknown> {
-  return _isSignal(value as any)
+export function isSignal(value: any): value is Signal<unknown> {
+  return value && _isSignal(value)
 }
 
-export function isComputed(value: unknown): value is Computed<unknown> {
-  return _isComputed(value as any)
+export function isComputed(value: any): value is Computed<unknown> {
+  return value && _isComputed(value)
 }
